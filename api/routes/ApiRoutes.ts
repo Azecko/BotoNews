@@ -5,8 +5,8 @@ import isLoggedIn from '../lib/pages/isLoggedIn';
 import login from '../lib/pages/login';
 import respond from '../lib/Respond';
 import news from '../lib/News';
-import user from '../lib/User'
-import user_edit from '../lib/User_edit';
+import user from '../lib/Users'
+import user_edit from '../lib/Users_edit';
 import subscriptions from '../lib/subscriptions';
 export class ApiRoutes {
   server: any;
