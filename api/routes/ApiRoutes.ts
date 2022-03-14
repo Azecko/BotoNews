@@ -18,11 +18,10 @@ export class ApiRoutes {
     this.server.get('/', home);
     this.server.get('/hello/:name', respond);
     this.server.head('/hello/:name', respond);
-    this.server.get('/news', news);
-    this.server.get('/user', user);
-    this.server.post('/user', user);
-    this.server.post('/user/edit', user_edit);
-    this.server.delete('/user', user);
+    this.server.get('/users/:user_id_or_username', user);
+    this.server.post('/users', user);
+    this.server.post('/users/edit', user_edit);
+    this.server.delete('/users', user);
     this.server.get('/profile/personal-details', isLoggedIn, profile);
     this.server.get('/profile/settings', isLoggedIn, profile);
     this.server.get('/profile/settings/:id_subscription', isLoggedIn, profile);
