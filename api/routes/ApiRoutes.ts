@@ -18,6 +18,7 @@ export class ApiRoutes {
     this.server.get('/', home);
     this.server.get('/hello/:name', respond);
     this.server.head('/hello/:name', respond);
+    this.server.get('/news/:sources?/:quantity?', news); // /news = retourner 3 news de chaque, /news/goepfl,actu = retourner 3 news de go epfl et actu, /news/goepfl,actu/5 = retourner 5 news de go epfl et actu
     this.server.get('/users/:user_id_or_username', user);
     this.server.post('/users', user);
     this.server.post('/users/edit', user_edit);
