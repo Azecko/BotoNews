@@ -69,9 +69,9 @@ INSERT INTO `t_sources` (`source`, `title`, `description`, `picture`) VALUES
 (1, 'Go', 'Latest links from go.epfl.ch', ''),
 (2, 'Actu', 'Latest news from actu.epfl.ch', ''),
 (3, 'HackerNews', 'Latest news from news.ycombinator.com', ''),
-(4, 'NewYork Times', 'Latest articles from https://www.nytimes.com/', ''),
-(5, 'Motivational Quotes', 'Some motival quotes from https://zenquotes.io/', ''),
-(6, 'Unsplash Image', 'Some random image from unsplash.com', ''),
+(4, 'NewYorkTimes', 'Latest articles from https://www.nytimes.com/', ''),
+(5, 'MotivationalQuotes', 'Some motival quotes from https://zenquotes.io/', ''),
+(6, 'Unsplash', 'Some random image from unsplash.com', ''),
 (7, 'WallStreetJournal', 'Latest news from https://www.wsj.com/', '');
 
 -- --------------------------------------------------------
