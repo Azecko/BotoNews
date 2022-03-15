@@ -8,6 +8,7 @@ import news from '../lib/News';
 import user from '../lib/Users'
 import user_edit from '../lib/Users_edit';
 import subscriptions from '../lib/subscriptions';
+import sources from '../lib/Sources';
 export class ApiRoutes {
   server: any;
   constructor(server: any) {
@@ -29,6 +30,9 @@ export class ApiRoutes {
     this.server.get('/profile/linked-accounts', isLoggedIn, profile);
     this.server.get('/profile/subscriptions', isLoggedIn, profile);
     this.server.get('/profile', isLoggedIn, profile);
+    // Sources
+    this.server.get('/sources', sources);
+    this.server.get('/source/:source_id_or_name', sources);
     // Subscriptions
     this.server.get('/subscriptions/:id_subscription', subscriptions);
     this.server.get('/subscriptions/user/:user', subscriptions);
