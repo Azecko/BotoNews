@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { getAllSources, getSourceByID, getSourceByName } from './DB';
+const user = async (req: Request, res: Response, next: NextFunction) => {
       var error = {
         status_code: 400,
         error: "Please specify a valid source name or a valid source id."
