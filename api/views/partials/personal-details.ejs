@@ -14,7 +14,7 @@
     } else {
       username = $(".username-input").val()
     }
-    axios.post('http://127.0.0.1:8081/user/edit', {
+    axios.post('http://127.0.0.1:8081/users/edit', {
       username: username,
       email: "<%= user.email %>"
     })

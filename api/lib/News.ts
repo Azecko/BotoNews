@@ -11,66 +11,66 @@ import { fetchNYtimes } from './FetchNYtimes';
 
 const news = async (req: Request, res: Response, next: NextFunction) => {
   let news: any = [];
-  if (!req.query.src) {
-    let hackerNews: BotonewsItem[] = await fetchHackernews(req.query);
-    let goEpfl: BotonewsItem[] = await fetchGoEpfl(req.query);
-    let actus: BotonewsItem[] = await fetchActu(req.query);
-    let motivquote: MotivQuoteItem[] = await fetchMotivQuote({number: req.query.number})
-    let tomshardware: BotonewsItem[] = await fetchTomHardware(req.query)
-    let letemps: BotonewsItem[] = await fetchLeTemps(req.query)
-    let wallstreetjournal: BotonewsItem[] = await fetchWSJ(req.query)
-    let newyorktimes: BotonewsItem[] = await fetchNYtimes(req.query)
+  if (!req.params.sources) {
+    let hackerNews: BotonewsItem[] = await fetchHackernews();
+    let goEpfl: BotonewsItem[] = await fetchGoEpfl();
+    let actus: BotonewsItem[] = await fetchActu();
+    let motivquote: MotivQuoteItem[] = await fetchMotivQuote()
+    let tomshardware: BotonewsItem[] = await fetchTomHardware()
+    let letemps: BotonewsItem[] = await fetchLeTemps()
+    let wallstreetjournal: BotonewsItem[] = await fetchWSJ()
+    let newyorktimes: BotonewsItem[] = await fetchNYtimes()
 
     news = news.concat(hackerNews, goEpfl, actus, motivquote, tomshardware, letemps, wallstreetjournal, newyorktimes);
   } else {
-    const channels = (req.query.src as string).split(',');
+    const channels = (req.params.sources.toLowerCase() as string).split(',');
     console.log(channels);
 
     if (channels.includes('hackernews')) {
       console.debug('  ↳ adding hackernews');
-      let hackerNews: BotonewsItem[] = await fetchHackernews(req.query);
+      let hackerNews: BotonewsItem[] = await fetchHackernews({number: req.params.quantity || 3});
       news = news.concat(hackerNews);
     }
 
-    if (channels.includes('goepfl')) {
+    if (channels.includes('go')) {
       console.debug('  ↳ adding goepfl');
-      let goEpfl: BotonewsItem[] = await fetchGoEpfl(req.query);
+      let goEpfl: BotonewsItem[] = await fetchGoEpfl({number: req.params.quantity || 3});
       news = news.concat(goEpfl);
     }
 
     if (channels.includes('actu')) {
       console.debug(' ↳ adding actu');
-      let actus: BotonewsItem[] = await fetchActu(req.query);
+      let actus: BotonewsItem[] = await fetchActu({number: req.params.quantity || 3});
       news = news.concat(actus);
     }
 
-    if(channels.includes('quote')) {
+    if(channels.includes('motivationalquotes')) {
       console.debug(' ↳ adding motivational quote')
-      let motivquote: MotivQuoteItem[] = await fetchMotivQuote({number: req.query.number})
+      let motivquote: MotivQuoteItem[] = await fetchMotivQuote({number: req.params.quantity || 3})
       news = news.concat(motivquote)
     }
 
     if(channels.includes('tomshardware')) {
       console.debug(' ↳ adding TomHardware');
-      let tomshardware: BotonewsItem[] = await fetchTomHardware(req.query);
+      let tomshardware: BotonewsItem[] = await fetchTomHardware({number: req.params.quantity || 3});
       news = news.concat(tomshardware);
     }
 
     if(channels.includes('letemps')) {
       console.debug(' ↳ adding LeTemps');
-      let letemps: BotonewsItem[] = await fetchLeTemps(req.query);
+      let letemps: BotonewsItem[] = await fetchLeTemps({number: req.params.quantity || 3});
       news = news.concat(letemps);
     }
 
-    if(channels.includes('wallstreet')) {
+    if(channels.includes('wallstreetjournal')) {
       console.debug(' ↳ adding WallStreetJournal');
-      let wallstreetjournal: BotonewsItem[] = await fetchWSJ(req.query);
+      let wallstreetjournal: BotonewsItem[] = await fetchWSJ({number: req.params.quantity || 3});
       news = news.concat(wallstreetjournal);
     }
 
     if(channels.includes('newyorktimes')) {
       console.debug(' ↳ adding NewYorkTimes');
-      let newyorktimes: BotonewsItem[] = await fetchNYtimes(req.query);
+      let newyorktimes: BotonewsItem[] = await fetchNYtimes({number: req.params.quantity || 3});
       news = news.concat(newyorktimes);
     }
 

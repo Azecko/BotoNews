@@ -5,9 +5,10 @@ import isLoggedIn from '../lib/pages/isLoggedIn';
 import login from '../lib/pages/login';
 import respond from '../lib/Respond';
 import news from '../lib/News';
-import user from '../lib/User'
-import user_edit from '../lib/User_edit';
+import user from '../lib/Users'
+import user_edit from '../lib/Users_edit';
 import subscriptions from '../lib/subscriptions';
+import sources from '../lib/Sources';
 export class ApiRoutes {
   server: any;
   constructor(server: any) {
@@ -18,17 +19,20 @@ export class ApiRoutes {
     this.server.get('/', home);
     this.server.get('/hello/:name', respond);
     this.server.head('/hello/:name', respond);
-    this.server.get('/news', news);
-    this.server.get('/user', user);
-    this.server.post('/user', user);
-    this.server.post('/user/edit', user_edit);
-    this.server.delete('/user', user);
+    this.server.get('/news/:sources?/:quantity?', news); // /news = retourner 3 news de chaque, /news/goepfl,actu = retourner 3 news de go epfl et actu, /news/goepfl,actu/5 = retourner 5 news de go epfl et actu
+    this.server.get('/users/:user_id_or_username', user);
+    this.server.post('/users', user);
+    this.server.post('/users/edit', user_edit);
+    this.server.delete('/users', user);
     this.server.get('/profile/personal-details', isLoggedIn, profile);
     this.server.get('/profile/settings', isLoggedIn, profile);
     this.server.get('/profile/settings/:id_subscription', isLoggedIn, profile);
     this.server.get('/profile/linked-accounts', isLoggedIn, profile);
     this.server.get('/profile/subscriptions', isLoggedIn, profile);
     this.server.get('/profile', isLoggedIn, profile);
+    // Sources
+    this.server.get('/sources', sources);
+    this.server.get('/source/:source_id_or_name', sources);
     // Subscriptions
     this.server.get('/subscriptions/:id_subscription', subscriptions);
     this.server.get('/subscriptions/user/:user', subscriptions);

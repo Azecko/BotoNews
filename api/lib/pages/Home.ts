@@ -55,7 +55,7 @@ const home = async (req: any, res: Response) => {
         let actu: BotonewsItem[] = await fetchActu({number: quantity});
         news = news.concat(actu);
       break;
-      case "Motivational Quotes":
+      case "MotivationalQuotes":
         let quotes: MotivQuoteItem[] = await fetchMotivQuote({number: quantity});
         news = news.concat(quotes);
       break;
@@ -67,7 +67,7 @@ const home = async (req: any, res: Response) => {
         let hackernews: BotonewsItem[] = await fetchHackernews({number: quantity});
         news = news.concat(hackernews);
       break;
-      case "NewYork Times":
+      case "NewYorkTimes":
         let nytimes: BotonewsItem[] = await fetchNYtimes({number: quantity});
         news = news.concat(nytimes);
       break;

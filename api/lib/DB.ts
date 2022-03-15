@@ -224,3 +224,15 @@ export const getAllSources = async () => {
 
     return rows
 }
+
+export const getSourceByName = async (title:string) => {
+    const [rows, fields] = await (await dbconnect).query(`SELECT * FROM t_sources where title = ?;`, [title]);
+
+    return rows
+}
+
+export const getSourceByID = async (sourceId:number) => {
+    const [rows, fields] = await (await dbconnect).query(`SELECT * FROM t_sources where source = ?;`, [sourceId]);
+
+    return rows
+}
